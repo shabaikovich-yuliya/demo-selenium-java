@@ -36,7 +36,7 @@ public class LoginTest {
     public void test3() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://secure.login.gov/");
-        String inputPasswordXpath = "//*[@id=\"password-toggle-input-a0f50422\"]";
+        String inputPasswordXpath = "/html/body/main/div/form/lg-password-toggle/lg-validated-field/div/input";
         By inputParrwordBy = By.xpath(inputPasswordXpath);
         WebElement inputPasswordWebElement = driver.findElement(inputParrwordBy);
         inputPasswordWebElement.sendKeys("1q2w#E4r");
@@ -47,3 +47,4 @@ public class LoginTest {
         buttonSigninWebElement.click();
     }
 }
+
