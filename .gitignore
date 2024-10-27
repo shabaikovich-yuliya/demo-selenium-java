@@ -2,6 +2,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea/
-
+*.iml
 ### Mac OS ###
 .DS_Store
