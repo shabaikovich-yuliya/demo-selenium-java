@@ -26,4 +26,22 @@ public class LoginPage {
         WebElement buttonSigninWebElement = driver.findElement(buttonSigninBy);
         buttonSigninWebElement.click();
     }
+
+    public String getErrorMessageInvalidLogin() {
+        By errorMessageInvalidLoginBy = By.xpath(LoginXpath.ERROR_MESSAGE_INVALID_LOGIN);
+        WebElement errorMessageInvalidLoginWebElement = driver.findElement(errorMessageInvalidLoginBy);
+        return errorMessageInvalidLoginWebElement.getText();
+    }
+
+    public String getErrorMessageInvalidPassword() {
+        By errorMessageInvalidPasswordBy = By.xpath(LoginXpath.ERROR_MESSAGE_INVALID_PASSWORD);
+        WebElement errorMessageInvalidPasswordWebElement = driver.findElement(errorMessageInvalidPasswordBy);
+        return errorMessageInvalidPasswordWebElement.getText();
+    }
+
+    public String getErrorMessageUnregisteredUser() {
+        By errorMessageUnregisteredUserBy = By.xpath(LoginXpath.ERROR_MESSAGE_UNREGISTERED_USER);
+        WebElement errorMessageUnregisteredUserWebElement = driver.findElement(errorMessageUnregisteredUserBy);
+        return errorMessageUnregisteredUserWebElement.getText();
+    }
 }
