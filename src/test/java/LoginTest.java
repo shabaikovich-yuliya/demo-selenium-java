@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class LoginTest {
     @Test
     public void emptyUserLogin() {
@@ -26,6 +28,22 @@ public class LoginTest {
         loginPage.clickButtonSignin();
 
         Assertions.assertEquals(LoginMessage.INVALID_PASSWORD, loginPage.getErrorMessageInvalidPassword());
+    }
+
+    @Test
+    public void unregisteredUser() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.netflix.com/pl-en/login");
+        LoginPage loginPage = new LoginPage(driver);
+
+        String userLogin = "login@login.com";
+        loginPage.sendKeysInputUserLogin(userLogin);
+        loginPage.sendKeysInputUPassword("Password123!");
+        loginPage.clickButtonSignin();
+
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        Assertions.assertEquals(LoginMessage.UNREGISTERED_USER + userLogin, loginPage.getErrorMessageUnregisteredUser());
     }
 
 }
