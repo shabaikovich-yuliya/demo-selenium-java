@@ -15,4 +15,17 @@ public class LoginTest {
 
         Assertions.assertEquals(LoginMessage.INVALID_LOGIN, loginPage.getErrorMessageInvalidLogin());
     }
+
+    @Test
+    public void emptyPassword() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.netflix.com/pl-en/login");
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.sendKeysInputUserLogin("login@login.com");
+        loginPage.clickButtonSignin();
+
+        Assertions.assertEquals(LoginMessage.INVALID_PASSWORD, loginPage.getErrorMessageInvalidPassword());
+    }
+
 }
