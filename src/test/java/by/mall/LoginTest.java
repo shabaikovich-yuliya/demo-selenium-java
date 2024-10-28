@@ -34,6 +34,15 @@ public class LoginTest {
         Assertions.assertEquals(LoginMessages.EMPTY_PASSWORD, loginPage.getErrorMessage());
     }
 
+    @Test
+    public void emptyPhoneAndPassword(){
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://emall.by/login/password");
+        LoginPage loginPage = new LoginPage(driver);
 
+        loginPage.clickButtonSignin();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
+        Assertions.assertEquals(LoginMessages.EMPTY_PHONE_AND_PASSWORD, loginPage.getErrorMessage());
+    }
 }
