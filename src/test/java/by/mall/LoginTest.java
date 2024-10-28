@@ -35,7 +35,7 @@ public class LoginTest {
     }
 
     @Test
-    public void emptyPhoneAndPassword(){
+    public void emptyPhoneAndPassword() {
         WebDriver driver = new ChromeDriver();
         driver.get("https://emall.by/login/password");
         LoginPage loginPage = new LoginPage(driver);
@@ -44,5 +44,19 @@ public class LoginTest {
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
         Assertions.assertEquals(LoginMessages.EMPTY_PHONE_AND_PASSWORD, loginPage.getErrorMessage());
+    }
+
+    @Test
+    public void unregisteredUser() {
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://emall.by/login/password");
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.sendKeysInputPhone("291234567");
+        loginPage.sendKeysInputPassword("Password123");
+        loginPage.clickButtonSignin();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+        Assertions.assertEquals(LoginMessages.UNREGISTERED_USER, loginPage.getErrorMessage());
     }
 }
